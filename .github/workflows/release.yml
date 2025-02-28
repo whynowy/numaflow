@@ -148,7 +148,7 @@ jobs:
         run: |
           IMAGE_NAMESPACE=${{ secrets.QUAYIO_ORG }} VERSION=${{ steps.version.outputs.VERSION }} DOCKER_PUSH=true make image-multi
 
-  Bom:
+  bom:
     runs-on: ubuntu-latest
     if: github.repository == 'numaproj/numaflow'
     needs: [build-push-linux-multi]
@@ -158,7 +158,7 @@ jobs:
           if [ ${GITHUB_REF##*/} = main ]; then
             echo "VERSION=latest" >> $GITHUB_ENV
           else
-            echo "VERSION=${GITHUB_REF##*/}" >> $GITHUB_ENV
+            echo "VERSION=v1.4.3" >> $GITHUB_ENV
           fi
       - uses: actions/setup-go@v5
         with:
@@ -188,7 +188,7 @@ jobs:
           if [ ${GITHUB_REF##*/} = main ]; then
             echo "VERSION=latest" >> $GITHUB_ENV
           else
-            echo "VERSION=${GITHUB_REF##*/}" >> $GITHUB_ENV
+            echo "VERSION=v1.4.3" >> $GITHUB_ENV
           fi
       - name: Download binaries
         uses: actions/download-artifact@v4
